@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملامحك تتحدث عنك</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f1ea;
+  margin: 0;
+  padding: 30px 15px;
+}
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px #bbb;
+}
+h1 { color: #333; }
+p { color: #666; }
+button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.camera { background: #333; color: white; }
+.gallery { background: #ddd; }
+#photo {
+  max-width: 100%;
+  margin-top: 15px;
+  border-radius: 15px;
+  display: none;
+}
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>ملامحك تتحدث عنك</h1>
+
+<p>التقط صورة أو اختر صورة لاكتشاف قراءة ترفيهية لملامح الوجه.</p>
+
+<input type="file" id="camera" accept="image/*" capture="user" hidden>
+<input type="file" id="gallery" accept="image/*" hidden>
+
+<button class="camera" onclick="document.getElementById('camera').click()">
+📷 التقاط صورة
+</button>
+
+<button class="gallery" onclick="document.getElementById('gallery').click()">
+🖼️ اختيار صورة
+</button>
+
+<img id="photo">
+
+<div id="result"></div>
+</div>
+
+<script>
+function showPhoto(file) {
+  if (!file) return;
+
+  const photo = document.getElementById("photo");
+  const result = document.getElementById("result");
+
+  photo.src = URL.createObjectURL(file);
+  photo.style.display = "block";
+
+  result.innerHTML =
+  "✨ قراءة ترفيهية: الصورة جاهزة للتحليل.<br>" +
+  "في النسخة القادمة سنضيف تحليلًا أكثر تفصيلًا للملامح والشخصية.";
+}
+
+document.getElementById("camera").addEventListener("change", function() {
+  showPhoto(this.files[0]);
+});
+
+document.getElementById("gallery").addEventListener("change", function() {
+  showPhoto(this.files[0]);
+});
+</script>
+
+</body>
+</html>
