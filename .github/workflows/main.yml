@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09121f">
+<title>ملامحك تتحدث عنك | محرز البرعومي</title>
+<style>
+:root{--bg:#09121f;--panel:#111e30;--panel2:#172941;--gold:#d9b66d;--white:#f7f4ed;--muted:#b2bfd0;--line:#293c54;--mint:#9ee0c4}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0c1a2c 0%,var(--bg) 58%);color:var(--white);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.75}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:850px;margin:auto;padding:16px}.header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px 18px}.brand{display:flex;align-items:center;gap:11px}.mark{width:44px;height:44px;border:1px solid var(--gold);border-radius:14px;display:grid;place-items:center;color:var(--gold);font-size:25px}.brand h1{font-size:1.08rem;line-height:1.4;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:.78rem}.owner{font-size:.74rem;color:var(--gold);border:1px solid #6a5735;padding:4px 9px;border-radius:30px;white-space:nowrap}
+.hero{border:1px solid #334660;border-radius:26px;background:linear-gradient(145deg,#172b45,#0e1b2c 76%);padding:24px 17px 22px;text-align:center;box-shadow:0 16px 40px #0003}.scanner{width:150px;height:170px;margin:0 auto 14px;border:1px solid #d9b66d65;border-radius:80px 80px 55px 55px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse,#d9b66d19,transparent 70%)}.face{font-size:90px;filter:drop-shadow(0 0 12px #d9b66d33)}.beam{position:absolute;left:8%;right:8%;height:2px;top:15%;background:var(--gold);box-shadow:0 0 14px 3px #d9b66d88;animation:scan 2.7s ease-in-out infinite alternate}@keyframes scan{to{top:86%}}.hero h2{font-size:clamp(1.55rem,5vw,2.15rem);line-height:1.4;margin:0 0 8px}.hero .intro{color:var(--muted);max-width:570px;margin:0 auto 16px}.btnrow{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}.btn{padding:10px 15px;border-radius:13px;border:1px solid var(--line);background:var(--panel2);color:var(--white)}.btn.primary{background:linear-gradient(135deg,#f0d795,#c49c4e);color:#172033;border:0;font-weight:750}.btn:focus-visible{outline:3px solid var(--gold)}.fine{font-size:.8rem;color:var(--muted);margin:14px auto 0;max-width:650px}
+.quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0}.quick button{background:var(--panel);border:1px solid var(--line);color:var(--white);padding:15px 12px;border-radius:17px;text-align:right;min-height:88px}.quick .emoji{font-size:1.4rem;display:block}.quick strong{display:block;font-size:.97rem}.quick small{color:var(--muted);font-size:.78rem}
+.page{display:none}.page.active{display:block}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:17px;margin:12px 0}.back{margin-bottom:12px}.page h2{font-size:1.35rem;margin:0 0 8px}.muted{color:var(--muted)}.hidden{display:none!important}.preview{display:none;max-width:100%;max-height:330px;object-fit:contain;border:1px solid var(--line);border-radius:14px;margin:14px auto}.status{background:#091626;border:1px solid var(--line);padding:12px;border-radius:13px;margin-top:12px}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.chips button{font-size:.87rem;padding:8px 11px}.entry{border-top:1px solid var(--line);padding:12px 0}.entry:first-of-type{border-top:0}.entry h3,.card h3{color:var(--gold);font-size:1.04rem;margin:0 0 4px}.entry p{margin:4px 0}.tag{display:inline-block;border:1px solid #51637a;border-radius:20px;color:var(--muted);font-size:.75rem;padding:1px 8px}.search{width:100%;padding:11px;border:1px solid var(--line);border-radius:12px;background:#091626;color:var(--white);margin:10px 0}.footer{text-align:center;border-top:1px solid var(--line);margin-top:20px;padding:16px 4px;color:var(--muted);font-size:.78rem}
+@media(min-width:620px){.quick{grid-template-columns:repeat(4,minmax(0,1fr))}.quick button{text-align:center}.quick .emoji{margin-bottom:4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="header">
+ <div class="brand"><div class="mark">◉</div><div><h1>ملامحك تتحدث عنك</h1><p>مكتبة الفراسة ودليل ملامح الوجه</p></div></div>
+ <div class="owner">إعداد: محرز البرعومي</div>
+</header>
+
+<main id="home">
+<section class="hero">
+ <div class="scanner" aria-hidden="true"><div class="face">👤</div><div class="beam"></div></div>
+ <h2>تعرّف على ملامح الوجه<br>واكتشف عالم الفراسة</h2>
+ <p class="intro">واجهة تعليمية لاستكشاف خصائص الوجه المرئية، وقراءة معلومات تاريخية ومراجع حول الفراسة.</p>
+ <div class="btnrow">
+  <button class="btn primary" onclick="showPage('scan')">⌁ ابدأ الآن</button>
+  <button class="btn" onclick="showPage('library')">📚 تصفّح المكتبة</button>
+ </div>
+ <p class="fine">الماسح المتحرك مؤثر بصري. هذه النسخة لا تدّعي معرفة الشخصية من الوجه ولا تتعرّف آلياً على الوجه بعد.</p>
+</section>
+<nav class="quick" aria-label="أقسام التطبيق">
+ <button onclick="showPage('scan')"><span class="emoji">📷</span><strong>الصورة</strong><small>اختيار ومعاينة</small></button>
+ <button onclick="showPage('features')"><span class="emoji">🔎</span><strong>دليل الملامح</strong><small>شرح الخصائص</small></button>
+ <button onclick="showPage('library')"><span class="emoji">📚</span><strong>الكتب والمراجع</strong><small>قراءة وتعلّم</small></button>
+ <button onclick="showPage('about')"><span class="emoji">ℹ️</span><strong>عن التطبيق</strong><small>المنهجية والخصوصية</small></button>
+</nav>
+</main>
+
+<section id="scan" class="page">
+<button class="btn back" onclick="home()">← الرئيسية</button>
+<div class="card">
+<h2>اختيار صورة</h2>
+<p class="muted">اختر صورة من هاتفك لمعاينتها. لن نعرض نتيجة مختلقة: التعرّف الآلي على وجود وجه وتحليل الملامح يحتاجان إلى محرّك مخصص غير مدمج في هذه النسخة.</p>
+<div class="btnrow" style="justify-content:flex-start"><button class="btn primary" onclick="document.getElementById('file').click()">اختيار صورة من الهاتف</button><button class="btn" onclick="clearPhoto()">مسح الصورة</button></div>
+<input id="file" class="hidden" type="file" accept="image/*">
+<img id="preview" class="preview" alt="معاينة الصورة">
+<div id="status" class="status">لم تختر صورة بعد.</div>
+<p class="fine">تتم المعاينة على جهازك في المتصفح. استأذن صاحب الصورة قبل استخدام صورته.</p>
+</div>
+</section>
+
+<section id="features" class="page">
+<button class="btn back" onclick="home()">← الرئيسية</button>
+<div class="card">
+<h2>دليل ملامح الوجه</h2>
+<p class="muted">اختر موضوعاً لقراءة الوصف المرئي والمعتقدات التاريخية وحدود الاستنتاج.</p>
+<div class="chips" id="topicButtons"></div>
+<div id="topicResult" class="status">اختر أحد الموضوعات لعرض المعلومات.</div>
+</div>
+</section>
+
+<section id="library" class="page">
+<button class="btn back" onclick="home()">← الرئيسية</button>
+<div class="card">
+<h2>مكتبة الفراسة</h2>
+<p class="muted">مراجع للبحث والقراءة. هذه الصفحة لا تحتوي على نسخ كاملة من الكتب؛ يجب التأكد من الطبعة وحقوق النشر قبل إعادة نشر أي نص.</p>
+<input class="search" id="bookSearch" placeholder="ابحث في عناوين المكتبة..." aria-label="البحث في الكتب">
+<div id="books">
+<div class="entry" data-search="ابن القيم الفراسة"><span class="tag">تراث عربي إسلامي</span><h3>الفراسة — ابن القيّم الجوزية</h3><p>عمل تراثي يتناول مفهوم الفراسة والاستدلال. يُقرأ لفهم تاريخ الأفكار، وليس كإثبات تجريبي أن شكل الوجه يكشف الشخصية.</p><p class="muted">للعثور على نسخة: ابحث عن العنوان واسم المؤلف في فهارس المكتبات الرقمية، وتحقّق من الطبعة والنص.</p></div>
+<div class="entry" data-search="Physiognomonica أرسطو يوناني"><span class="tag">تراث يوناني قديم</span><h3>Physiognomonica — منسوب إلى أرسطو</h3><p>نص قديم حول محاولات ربط المظهر الجسدي بالطباع. نسبة العمل إلى أرسطو محل نقاش، لذلك يوصف بأنه منسوب إليه.</p><p class="muted">للبحث: استخدم العنوان اللاتيني في فهارس الجامعات والمكتبات الرقمية.</p></div>
+<div class="entry" data-search="المنهج العلمي الأدلة التجارب الشخصية"><span class="tag">منهج التحقق</span><h3>كيف نقيّم ادعاءات الفراسة؟</h3><p>ابحث عن دراسات منشورة، وعينات مناسبة، ونتائج قابلة للتكرار، وتقييم مستقل. التجربة الشخصية وحدها لا تكفي لإثبات قاعدة عامة.</p></div>
+<div class="entry" data-search="قاموس الملامح العين الحاجب الأنف الشفاه الجبين الأذن الرقبة"><span class="tag">دليل داخل التطبيق</span><h3>قاموس ملامح الوجه</h3><p>تعريفات لأشكال الوجه والعينين والحاجبين والأنف والشفتين والجبين والأذنين والرقبة، مع فصل الوصف المرئي عن التأويلات التراثية.</p></div>
+</div>
+</div>
+</section>
+
+<section id="about" class="page">
+<button class="btn back" onclick="home()">← الرئيسية</button>
+<div class="card">
+<h2>عن التطبيق</h2>
+<p>إعداد: <strong>محرز البرعومي</strong></p>
+<p>الهدف هو توفير محتوى عربي سهل حول ملامح الوجه وتاريخ الفراسة، مع توضيح مصادر المعلومات وحدودها.</p>
+<h3>ماذا يستطيع التطبيق أن يقول؟</h3>
+<ul><li>يمكن وصف خصائص مرئية مثل شكل الوجه التقريبي إذا كانت الصورة واضحة.</li><li>تتأثر الصورة بالإضاءة والزاوية وجودة التصوير.</li><li>لا يمكن الجزم بصدق الإنسان أو أخلاقه أو ذكائه أو نواياه من شكل وجهه وحده.</li><li>تُعرض تفسيرات كتب الفراسة باعتبارها تراثاً تاريخياً، لا حقائق مثبتة تلقائياً.</li></ul>
+<h3>الخصوصية</h3><p>هذه النسخة تعرض الصورة محلياً في المتصفح ولا ترسلها إلى خادم. قبل النشر العام، يجب إعداد سياسة خصوصية واختبار الوظائف وإضافة محرّك تحليل حقيقي إذا أُريد هذا النوع من الوظائف.</p>
+</div>
+</section>
+
+<footer class="footer">ملامحك تتحدث عنك · إعداد محرز البرعومي<br>نسخة تجريبية تعليمية — لا تستخدمها لإصدار أحكام على الناس.</footer>
+</div>
+<script>
+const topics={
+"شكل الوجه":["الوصف المرئي: تُستعمل أوصاف مثل البيضاوي والمستدير والمربع والمستطيل والقلب والماسي. قد يختلف التصنيف حسب زاوية التصوير والشعر والإضاءة.","الفراسة التقليدية: توجد تفسيرات تاريخية متنوعة تربط الأشكال بصفات شخصية.","حدود الاستنتاج: شكل الوجه وحده لا يثبت شخصية الإنسان أو أخلاقه."],
+"العينان":["الوصف المرئي: يمكن ملاحظة حجم العينين الظاهر والمسافة بينهما واتجاه النظر في لحظة التصوير.","الفراسة التقليدية: تختلف تأويلات العينين بين الكتب والمدارس القديمة.","حدود الاستنتاج: النظرة الواحدة لا تثبت الصدق أو الكذب أو النوايا."],
+"الحاجبان":["الوصف المرئي: يمكن وصف السماكة والتقوس والمسافة بين الحاجبين إذا ظهرا بوضوح.","الفراسة التقليدية: توجد تأويلات قديمة مختلفة للحاجبين.","حدود الاستنتاج: شكل الحاجب لا يحدد صفة أخلاقية موثوقة."],
+"الأنف":["الوصف المرئي: مستقيم أو مقوس أو عريض أو ضيق أو طويل أو قصير نسبياً، وفق زاوية الصورة.","الفراسة التقليدية: وردت تصنيفات وتأويلات متعددة للأنف في بعض المراجع القديمة.","حدود الاستنتاج: شكل الأنف لا يثبت الكرم أو البخل أو الشجاعة."],
+"الشفتان":["الوصف المرئي: يمكن وصف الامتلاء والشكل الظاهر مع مراعاة زاوية التصوير.","الفراسة التقليدية: تمنح بعض النصوص القديمة أشكال الشفاه معاني مفترضة.","حدود الاستنتاج: لا يمكن تحديد الطيبة أو الصدق من الشفتين."],
+"الجبين":["الوصف المرئي: قد يوصف الجبين بأنه عريض أو ضيق أو مرتفع أو منخفض نسبياً.","الفراسة التقليدية: ربطت بعض الكتابات القديمة الجبين بقدرات ذهنية أو طباع.","حدود الاستنتاج: حجم الجبين ليس مقياساً موثوقاً للذكاء أو الحكمة."],
+"الأذنان":["الوصف المرئي: يمكن وصف الحجم الظاهر ومدى بروز الأذنين إذا كانتا واضحتين.","الفراسة التقليدية: توجد دلالات مفترضة للأذنين في بعض أنظمة الفراسة.","حدود الاستنتاج: حجم الأذن أو قربها من الرأس لا يحدد الشخصية."],
+"الرقبة":["الوصف المرئي: يمكن وصف الرقبة بأنها طويلة أو قصيرة أو عريضة نسبياً مع مراعاة الوضعية والملابس.","الفراسة التقليدية: وردت تأويلات مختلفة للرقبة في الكتابات القديمة.","حدود الاستنتاج: شكل الرقبة لا يثبت الشجاعة أو المزاج أو الأخلاق."]
+};
+const buttons=document.getElementById('topicButtons'),result=document.getElementById('topicResult');
+Object.keys(topics).forEach(name=>{let b=document.createElement('button');b.className='btn';b.textContent=name;b.onclick=()=>{result.innerHTML='<h3>'+name+'</h3>'+topics[name].map(t=>'<p>'+t+'</p>').join('')};buttons.appendChild(b)});
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('home').classList.add('hidden');document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function home(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('home').classList.remove('hidden');window.scrollTo(0,0)}
+const fileInput=document.getElementById('file');
+fileInput.addEventListener('change',()=>{const f=fileInput.files[0];if(!f)return;const preview=document.getElementById('preview'),status=document.getElementById('status');if(!f.type.startsWith('image/')){status.textContent='الملف ليس صورة. اختر صورة من فضلك.';preview.style.display='none';return;}preview.src=URL.createObjectURL(f);preview.style.display='block';status.textContent='تم فتح الصورة للمعاينة. ملاحظة: هذه النسخة لا تتضمن بعد محرّكاً آلياً للتحقق من وجود وجه أو تحديد شكله، لذلك لن تعرض نتيجة غير مؤكدة.';});
+function clearPhoto(){fileInput.value='';document.getElementById('preview').removeAttribute('src');document.getElementById('preview').style.display='none';document.getElementById('status').textContent='تم مسح الصورة. اختر صورة جديدة عند الحاجة.'}
+document.getElementById('bookSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();document.querySelectorAll('#books .entry').forEach(el=>{el.style.display=(el.innerText+' '+el.dataset.search).toLowerCase().includes(q)?'block':'none'})});
+</script>
+</body>
+</html>
