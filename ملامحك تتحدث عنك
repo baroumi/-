@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>ملامحك تتحدث عنك | محرز البرعومي</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#071426;color:#fff;
+ font-family:Arial,Tahoma,sans-serif;text-align:center;
+}
+header{padding:25px 12px 15px}
+.logo{font-size:42px}
+h1{color:#e6c779;font-size:27px;margin:8px 0}
+.sub{color:#b9c9dc;font-size:14px;line-height:1.8}
+.card{
+ background:#10233b;border:1px solid #294566;
+ border-radius:22px;padding:20px;margin:15px auto;
+ width:92%;max-width:460px;
+}
+.scan{
+ width:220px;height:260px;margin:15px auto;
+ border:2px solid #56e6ef;border-radius:48% 48% 42% 42%;
+ position:relative;overflow:hidden;
+ display:flex;align-items:center;justify-content:center;
+ background:#09182a;
+}
+.scan img{width:100%;height:100%;object-fit:cover}
+.scan:after{
+ content:"";position:absolute;left:0;right:0;height:3px;
+ background:#53f4f2;box-shadow:0 0 15px #53f4f2;
+ top:10%;animation:beam 2.5s linear infinite;
+}
+@keyframes beam{0%{top:5%}100%{top:95%}}
+.placeholder{font-size:68px;color:#6de7ed}
+button,.upload{
+ display:block;width:100%;padding:15px;margin:12px 0;
+ border:0;border-radius:13px;font-size:17px;font-weight:bold;
+ cursor:pointer;
+}
+.primary{background:#e6c779;color:#071426}
+.secondary{background:#1e4567;color:#fff}
+input[type=file]{display:none}
+#preview{display:none}
+#status{color:#77e8ef;line-height:1.8}
+#result{display:none;text-align:right;line-height:2}
+#result h2{color:#e6c779;text-align:center}
+.tag{color:#65e5ee;font-weight:bold}
+footer{padding:20px;color:#8fa5bd;font-size:13px;line-height:1.8}
+</style>
+</head>
+
+<body>
+<header>
+<div class="logo">🔎</div>
+<h1>ملامحك تتحدث عنك</h1>
+<div class="sub">
+اكتشف قراءة ترفيهية جديدة لصورتك<br>
+<span style="color:#e6c779">إعداد: محرز البرعومي</span>
+</div>
+</header>
+
+<main class="card">
+<h3>✨ مرحبًا بك في عالم الملامح</h3>
+<p class="sub">التقط صورة أو اختر صورة من هاتفك لبدء التجربة.</p>
+
+<div class="scan" id="scan">
+<div class="placeholder" id="placeholder">👤</div>
+<img id="preview" alt="الصورة المختارة">
+</div>
+
+<input id="photo" type="file" accept="image/*" capture="user">
+
+<button class="primary" onclick="document.getElementById('photo').click()">
+📸 التصوير أو اختيار صورة
+</button>
+
+<button class="secondary" id="analyze" style="display:none">
+🔍 ابدأ تحليل الصورة
+</button>
+
+<div id="status">صورتك تبقى على هاتفك أثناء هذه التجربة.</div>
+
+<section id="result">
+<h2>✨ نتيجة التحليل الترفيهي</h2>
+<p>أسلوبك المحتمل: <span class="tag" id="trait"></span></p>
+<p>نقطة إيجابية للتأمل: <span id="strength"></span></p>
+<p>رسالة خاصة لك: <span id="message"></span></p>
+<p class="sub">هذه النتيجة ترفيهية، وليست حكمًا علميًا على الشخصية أو دليلًا على صفات الإنسان الحقيقية.</p>
+<button class="primary" onclick="resetApp()">🔄 تحليل صورة أخرى</button>
+</section>
+</main>
+
+<footer>
+ملامحك تتحدث عنك<br>
+جميع الحقوق محفوظة © محرز البرعومي
+</footer>
+
+<script>
+const photo=document.getElementById('photo');
+const preview=document.getElementById('preview');
+const placeholder=document.getElementById('placeholder');
+const analyze=document.getElementById('analyze');
+const statusBox=document.getElementById('status');
+let currentURL=null;
+let imageSignature=0;
+
+photo.addEventListener('change',function(){
+ const file=this.files&&this.files[0];
+ if(!file)return;
+
+ if(!file.type.startsWith('image/')){
+  statusBox.textContent='الرجاء اختيار ملف صورة صالح.';
+  return;
+ }
+ if(file.size>12*1024*1024){
+  statusBox.textContent='الصورة كبيرة جدًا. اختر صورة أصغر من 12 ميغابايت.';
+  return;
+ }
+
+ if(currentURL)URL.revokeObjectURL(currentURL);
+ currentURL=URL.createObjectURL(file);
+ preview.src=currentURL;
+ preview.style.display='block';
+ placeholder.style.display='none';
+ document.getElementById('result').style.display='none';
+ analyze.style.display='block';
+ statusBox.textContent='تم اختيار الصورة بنجاح. اضغط على زر التحليل.';
+});
+
+analyze.addEventListener('click',function(){
+ if(!preview.complete||!preview.naturalWidth){
+  statusBox.textContent='انتظر تحميل الصورة ثم حاول مرة أخرى.';
+  return;
+ }
+
+ statusBox.textContent='جارٍ إعداد القراءة الترفيهية...';
+ analyze.disabled=true;
+
+ setTimeout(function(){
+  try{
+   const canvas=document.createElement('canvas');
+   canvas.width=32;
+   canvas.height=32;
+   const ctx=canvas.getContext('2d',{willReadFrequently:true});
+   ctx.drawImage(preview,0,0,32,32);
+   const pixels=ctx.getImageData(0,0,32,32).data;
+   let hash=2166136261;
+   let r=0,g=0,b=0,n=0;
+
+   for(let i=0;i<pixels.length;i+=16){
+    r+=pixels[i];g+=pixels[i+1];b+=pixels[i+2];n++;
+    hash^=pixels[i];
+    hash=Math.imul(hash,16777619);
+    hash^=pixels[i+1];
+    hash=Math.imul(hash,16777619);
+   }
+
+   imageSignature=(hash>>>0);
+   const traits=[
+    'الهدوء والتأمل',
+    'الحيوية وحب التجديد',
+    'التوازن والمرونة',
+    'الفضول وحب الاكتشاف',
+    'التفاؤل وروح المبادرة',
+    'الصبر والتأني'
+   ];
+   const strengths=[
+    'امنح نفسك فرصة لاكتشاف قدراتك.',
+    'التواصل الجيد يساعد على بناء علاقات جميلة.',
+    'التعلم من التجارب يفتح آفاقًا جديدة.',
+    'الاستماع للآخرين قد يكشف أفكارًا مفيدة.',
+    'الخطوات الصغيرة قد تقود إلى نتائج رائعة.',
+    'التفكير قبل اتخاذ القرار عادة نافعة.'
+   ];
+   const messages=[
+    'كل يوم فرصة لبداية جديدة.',
+    'لا تتردد في تعلم شيء مختلف.',
+    'الثقة بالنفس تنمو بالممارسة والتجربة.',
+    'عامل الآخرين باحترام وامنح نفسك الوقت.',
+    'النجاح يبدأ بهدف واضح وخطوة عملية.',
+    'لا تجعل الانطباعات الأولى تحكم على الناس.'
+   ];
+
+   const index=imageSignature%traits.length;
+   document.getElementById('trait').textContent=traits[index];
+   document.getElementById('strength').textContent=
+    strengths[(index+Math.floor(r/1000))%strengths.length];
+   document.getElementById('message').textContent=
+    messages[(index+Math.floor(g/1000))%messages.length];
+
+   document.getElementById('result').style.display='block';
+   statusBox.textContent='اكتمل التحليل الترفيهي بنجاح.';
+   analyze.disabled=false;
+   document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  }catch(e){
+   statusBox.textContent='تعذر تحليل الصورة. جرّب صورة أخرى.';
+   analyze.disabled=false;
+  }
+ },700);
+});
+
+function resetApp(){
+ photo.value='';
+ preview.removeAttribute('src');
+ preview.style.display='none';
+ placeholder.style.display='block';
+ analyze.style.display='none';
+ document.getElementById('result').style.display='none';
+ statusBox.textContent='اختر صورة جديدة للبدء.';
+ if(currentURL){
+  URL.revokeObjectURL(currentURL);
+  currentURL=null;
+ }
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
